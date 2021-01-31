@@ -1,5 +1,8 @@
 class PagesController < ApplicationController
-  def home; end
+  def home
+    flash.now[:notice] = 'Logged in successfully'
+    flash.now[:alert] = 'Invalid email or password'
+  end
 
   def about; end
 end
