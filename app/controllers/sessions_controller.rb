@@ -1,4 +1,6 @@
 class SessionsController < ApplicationController
+  before_action :require_user_logged_in!, except: :destroy
+
   def new; end
 
   def create

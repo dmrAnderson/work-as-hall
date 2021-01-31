@@ -1,13 +1,8 @@
-<h1>Sign up</h1>
+<h1>Edit password</h1>
 
-<%= form_with(model: @user, url: :sign_up) do |f| %>
+<%= form_with(model: Current.user, url: :password) do |f| %>
   <%= render "shared/errors", object: f.object %>
 
-  <div class="mb-3">
-    <%= f.label :email %>
-    <%= f.text_field :email, class: "form-control",
-                             placeholder: "test@test.com" %>
-  </div>
   <div class="mb-3">
     <%= f.label :password %>
     <%= f.password_field :password, class: "form-control",
@@ -20,6 +15,6 @@
   </div>
 
   <div class="mb-3">
-    <%= f.submit "Get started", class: "btn btn-primary" %>
+    <%= f.submit "Update password", class: "btn btn-primary" %>
   </div>
 <% end %>
