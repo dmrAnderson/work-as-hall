@@ -1,5 +1,5 @@
 class SessionsController < ApplicationController
-  before_action :require_user_logged_in!, except: :destroy
+  before_action :require_user_logged_in!, only: :destroy
 
   def new; end
 
@@ -7,15 +7,15 @@ class SessionsController < ApplicationController
     user = User.find_by(email: params[:email])
     if user.present? && user.authenticate(params[:password])
       session[:user_id] = user.id
-      redirect_to :root, notice: 'Logged in successfully'
+      redirect_to(:root, notice: 'Logged in successfully')
     else
       flash[:alert] = 'Invalid email or password'
-      render :new
+      render(:new)
     end
   end
 
   def destroy
     session[:user_id] = nil
-    redirect_to :root, notice: 'Logged out'
+    redirect_to(:root, notice: 'Logged out')
   end
 end

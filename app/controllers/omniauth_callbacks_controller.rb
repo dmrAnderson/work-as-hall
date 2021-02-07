@@ -1,11 +1,6 @@
 class OmniauthCallbacksController < ApplicationController
   def twitter
-    Rails.logger.info(auth)
-
-    twitter_account = Current.user.twitter_accounts.where(
-      username: auth.info.nickname
-    ).first_or_initialize
-
+    # Rails.logger.info(auth)
     twitter_account.update(
       name:     auth.info.name,
       username: auth.info.nickname,
@@ -14,10 +9,17 @@ class OmniauthCallbacksController < ApplicationController
       secret:   auth.credentials.secret
     )
 
-    redirect_to :root, notice: 'Successfully connected to your account'
+    redirect_to(:twitter_accounts, notice: 'Successfully connected to your account')
   end
+
+  private
 
   def auth
     request.env['omniauth.auth']
+  end
+
+  def twitter_account
+    Current.user.twitter_accounts.where(username: auth.info.nickname)
+           .first_or_initialize
   end
 end
