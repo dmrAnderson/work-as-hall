@@ -17,6 +17,7 @@ gem 'bcrypt', '~> 3.1.7'
 
 # added
 gem "omniauth-twitter", "~> 1.4"
+gem "omniauth-rails_csrf_protection", "~> 1.0"
 #
 
 group :development, :test do
