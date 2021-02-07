@@ -5,9 +5,9 @@ class PasswordsController < ApplicationController
 
   def update
     if Current.user.update(password_params)
-      redirect_to :root, notice: 'Password updated'
+      redirect_to(:root, notice: 'Password updated')
     else
-      render :edit
+      render(:edit)
     end
   end
 

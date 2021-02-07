@@ -1,15 +1,13 @@
 class ApplicationController < ActionController::Base
-  before_action :get_current_user
+  before_action :current_user
 
-  def get_current_user
-    if session[:user_id]
-      Current.user = User.find_by(id: session[:user_id])
-    end
+  def current_user
+    Current.user ||= User.find_by(id: session[:user_id]) if session[:user_id]
   end
 
   def require_user_logged_in!
-    if Current.user.nil?
-      redirect_to :sign_in, alert: 'You must be signed in to do that'
+    unless Current.user
+      redirect_to(:sign_in, alert: 'You must be signed in to do that')
     end
   end
 end
