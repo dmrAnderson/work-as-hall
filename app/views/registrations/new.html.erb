@@ -1,7 +1,7 @@
 <h1>Sign up</h1>
 
 <%= form_with(model: @user, url: :sign_up) do |f| %>
-  <%= render "shared/errors", object: f.object %>
+  <%= render "shared/form_errors", object: f.object %>
 
   <div class="mb-3">
     <%= f.label :email %>
