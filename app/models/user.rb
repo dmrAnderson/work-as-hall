@@ -8,6 +8,7 @@ class User < ApplicationRecord
   has_secure_password
 
   has_many :twitter_accounts, dependent: :destroy
+  has_many :tweets, dependent: :destroy
 
   validates :email, presence: true,
                     format: {

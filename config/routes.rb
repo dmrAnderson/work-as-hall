@@ -22,4 +22,5 @@ Rails.application.routes.draw do
   #
 
   resources :twitter_accounts
+  resources :tweets
 end
