@@ -1,0 +1,20 @@
+<h1>Edit password</h1>
+
+<%= form_with(model: Current.user, url: :password) do |f| %>
+  <%= render "shared/errors", object: f.object %>
+
+  <div class="mb-3">
+    <%= f.label :password %>
+    <%= f.password_field :password, class: "form-control",
+                                    placeholder: "qwerty123" %>
+  </div>
+  <div class="mb-3">
+    <%= f.label :password_confirmation %>
+    <%= f.password_field :password_confirmation, class: "form-control",
+                                                 placeholder: "qwerty123" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Update password", class: "btn btn-primary" %>
+  </div>
+<% end %>
