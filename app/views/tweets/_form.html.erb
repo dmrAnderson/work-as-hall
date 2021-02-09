@@ -1,0 +1,29 @@
+<%= form_with(model: tweet) do |f| %>
+  <%= render("shared/form_errors", object: f.object) %>
+
+  <div class="mb-3">
+    <%= f.label :twitter_account_id %>
+    <%= f.colection_select :twitter_account_id, Current.user.twitter_accounts, :id, :username, {}, { class: "form-control" } %>
+    <%= link_to "Connect your Twitter Acount", "auth/twitter", method: :post %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :body %>
+    <%= f.text_area :body, class: "form-control" %>
+  </div>
+
+  <div class="mb-3">
+    <%= f.label :publish_at %>
+    <div class="form-control">
+      <%= f.datetime_select :publish_at %>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <%= f.submit "Schedule", class: "btn btn-primary" %>
+  </div>
+
+  <% if f.object.persisted? %>
+    <%= button_to "Delete", f.object, method: :delete, data: { confirm: "Are you sure?" }, class: "btn btn-outline-danger" %>
+  <% end %>
+<% end %>
